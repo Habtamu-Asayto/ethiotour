@@ -3,6 +3,8 @@ import 'package:ethiotour/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
+import '../home/test.dart';
+
 class OnBoard extends StatelessWidget {
   const OnBoard({Key? key}) : super(key: key);
  
@@ -35,7 +37,7 @@ class OnBoard extends StatelessWidget {
                 text: 'Start Tour',
                 onClicked: () => goToHome(context),
               ),
-              image: buildImage('assets/learn.png'),
+              image: buildImage('assets/tour.jpeg'),
               decoration: getPageDecoration(),
             ),
       ],
@@ -54,7 +56,8 @@ class OnBoard extends StatelessWidget {
   );
 
   void goToHome(context) => Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const HomePage()),
+        //MaterialPageRoute(builder: (_) => const HomePage()),
+        MaterialPageRoute(builder: (_) => Test()),
       );
 
   Widget buildImage(String path) =>

@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: AnimatedSplashScreen(
-        splash: Image.asset("assets/Fasilides_Palace_01.jpg"),  
+        splash: Image.asset("assets/Welcome2.jpg"),  
         // ignore: prefer_const_constructors
         nextScreen: OnBoard(),
         splashTransition: SplashTransition.scaleTransition,
         backgroundColor: Colors.white,
-        duration: 1000,
+        duration: 2000,
         ),
     );
   }

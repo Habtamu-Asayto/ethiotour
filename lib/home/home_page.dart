@@ -1,36 +1,67 @@
-import 'package:ethiotour/main.dart';
-import 'package:ethiotour/splash/onboard.dart';
-import 'package:ethiotour/widget/button_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:ethiotour/widget/maps_widget.dart';
+import 'package:ethiotour/widget/panel_widget.dart';
+import 'package:flutter/material.dart'; 
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text(MyApp.title),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // ignore: prefer_const_constructors
-              Text(
-                "HomePage",
-                style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 24),
-              ButtonWidget(
-                text: 'Go Back',
-                onClicked: () => goToOnBoarding(context),
-              ),
-            ],
-          ),
-        ),
-      );
+  State<HomePage> createState() => _HomePageState();
+}
 
-  void goToOnBoarding(context) => Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const OnBoard()),
-      );
+class _HomePageState extends State<HomePage> {
+  final panelController = PanelController();
+
+  static const double fabButtonHeightClosed = 116.0;
+  double fabButtonHeight = fabButtonHeightClosed;
+
+  
+  @override
+  Widget build(BuildContext context) {
+    final panelHeightOpen = MediaQuery.of(context).size.height * 0.8;
+    final panelHeightClosed = MediaQuery.of(context).size.height * 0.1;
+    return Scaffold(
+      
+       body: Stack(
+         alignment: Alignment.topCenter,
+         children: [
+            SlidingUpPanel (
+              controller: panelController,
+              minHeight: panelHeightClosed,
+              maxHeight: panelHeightOpen,
+              parallaxEnabled: true,
+              parallaxOffset: .5,
+              body: MapsWidget(),
+              panelBuilder: (controller) => PanelWidget(
+                controller: controller,
+                panelController: panelController,
+                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(19)),
+                onPanelSlide: (position) => setState(() {
+                 final panelMaxScroll = panelHeightOpen - panelHeightClosed;
+                 
+                 fabButtonHeight = position * panelMaxScroll + fabButtonHeightClosed; 
+                }),
+              ),
+            Positioned(
+              right: 20,
+              bottom: fabButtonHeight,
+              child: buildBottomButton(context)
+            ),
+         ],
+       ),
+               
+    );
+  }
+
+  Widget buildBottomButton(BuildContext context) => FloatingActionButton(
+    backgroundColor: Colors.white,
+    child: Icon(
+      Icons.gps_fixed,
+      color: Theme.of(context).primaryColor,
+    ),
+    onPressed: (){}
+  );
+ 
 }
