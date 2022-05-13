@@ -1,9 +1,8 @@
-import 'package:ethiotour/home/home_page.dart';
+ 
+import 'package:ethiotour/home/real_home.dart'; 
 import 'package:ethiotour/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-
-import '../home/test.dart';
 
 class OnBoard extends StatelessWidget {
   const OnBoard({Key? key}) : super(key: key);
@@ -57,7 +56,7 @@ class OnBoard extends StatelessWidget {
 
   void goToHome(context) => Navigator.of(context).pushReplacement(
         //MaterialPageRoute(builder: (_) => const HomePage()),
-        MaterialPageRoute(builder: (_) => Test()),
+        MaterialPageRoute(builder: (_) => RealHome()),
       );
 
   Widget buildImage(String path) =>

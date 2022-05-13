@@ -24,38 +24,28 @@ class PanelWidget extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [ 
-        buildDragHandler(),
-        SizedBox(height: 24),
-        Center(
-          child: Text(
-            "Visit Ethiopia",
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 21),
-          ), 
-          
-        ), 
+        buildDragHandler(), 
         SizedBox(height: 12),
-        Center(
-          child: Row(
-            children: [
-              panelCard(),
-            ],
-          )
-          
-        ), 
+        DefaultTabController(
+          length: 4,
+          child: TabBar(
+            tabs: [
+              Tab(text: "Category"),
+              Tab(text: "Explore"),
+              Tab(text: "Contribution"),
+              Tab(text: "Plus")
+          ]),
+           
+        ),  
      ],
     ),
   );
 
-  Widget panelCard() => Container(
-    child: Column(
-      children: [
-        Text("Images",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400))
-      ],
-    ),
-    
-    
+ /* Widget panelCard() =>  Container(
+    child: Text("data"),
   );
-   
+  */
+
   Widget buildDragHandler() => GestureDetector(
     child: Center(
       child: Container(

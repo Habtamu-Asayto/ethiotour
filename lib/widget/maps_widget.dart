@@ -1,5 +1,4 @@
-import 'dart:async';
-import 'package:ethiotour/service/location_service.dart';
+import 'dart:async'; 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -72,7 +71,7 @@ class MapsWidget extends StatelessWidget {
             )),
           IconButton(
             onPressed: (){
-              LocationService().getPlaceId(_searchController.text);
+              
             }, 
             icon: Icon(Icons.search)
           ),

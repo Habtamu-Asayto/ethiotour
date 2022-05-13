@@ -1,5 +1,6 @@
 import 'package:ethiotour/widget/maps_widget.dart';
 import 'package:ethiotour/widget/panel_widget.dart';
+import 'package:ethiotour/widgets/menu_widget.dart';
 import 'package:flutter/material.dart'; 
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -22,7 +23,10 @@ class _HomePageState extends State<HomePage> {
     final panelHeightOpen = MediaQuery.of(context).size.height * 0.8;
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.1;
     return Scaffold(
-      
+       appBar: AppBar(
+         title: Text("All Places"),
+         leading: MenuWidget(),
+       ),
        body: Stack(
          alignment: Alignment.topCenter,
          children: [
