@@ -2,7 +2,7 @@ import 'package:ethiotour/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
 
 class MenuItems {
-  static const allPlace = MenuItem("Allplace", Icons.place);
+  static const home = MenuItem("Home", Icons.home);
   static const nearby = MenuItem("Nearby", Icons.near_me);
   static const saved = MenuItem("Saved", Icons.save);
   static const routes = MenuItem("Routes", Icons.route);
@@ -11,7 +11,7 @@ class MenuItems {
  
 
   static const all = <MenuItem> [
-    allPlace,
+    home,
     nearby,
     saved,
     routes,
@@ -31,38 +31,46 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context)=>Theme(
     data: ThemeData.dark(),
-    child: Scaffold(
-      
-      backgroundColor: Colors.indigo,
-      body: SafeArea(
-        child: Column(
-          
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 7),
-              child: Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: Container(
-                  child: Icon(
-                    Icons.account_box
-                  ),
-                  
-                ),
+    child: Scaffold( 
+     // backgroundColor: Colors.white.withOpacity(0.9),
+     backgroundColor: Colors.indigoAccent,
+      body: ListView(  
+        padding: EdgeInsets.symmetric(horizontal: 3),
+          children: [ 
+            DrawerHeader(
+              child: Row( 
+                children: [
+                  Container(
+                    child: Column(
+                      children: [
+                         CircleAvatar(
+                          radius: 44,
+                          backgroundImage: AssetImage("assets/welcome.jpg"),
+                        ),
+                        SizedBox(height: 12),
+                        Text("Habtamu Asayto",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
               
+                      ],
+                    ),
+                  ),
+                 
+                  
+                ],
+                
               ),
-            ),
-            Spacer(),
+              
+            ),  
+            Divider(thickness: 2, color:Colors.white24),
             ...MenuItems.all.map(buildMenuItem).toList(),
+            
             Spacer(flex: 2)
           ],
-        )
-      ),
-    ),
+        ),
+      ), 
   );
   Widget buildMenuItem(MenuItem item) => ListTileTheme(
-    selectedColor: Colors.white,
-    child: ListTile(
+    selectedColor: Colors.white, 
+    child: ListTile( 
       selectedTileColor: Colors.black26,
       selected: currentItem==item,
       minLeadingWidth: 20,

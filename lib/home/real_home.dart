@@ -1,5 +1,3 @@
-
-import 'package:ethiotour/home/home_page.dart';
 import 'package:ethiotour/pages/addPlace.dart';
 import 'package:ethiotour/pages/allPage.dart';
 import 'package:ethiotour/pages/setting.dart';
@@ -19,12 +17,12 @@ class RealHome extends StatefulWidget {
 }
 
 class _RealHomeState extends State<RealHome> {
-  MenuItem currentItem = MenuItems.allPlace;
+  MenuItem currentItem = MenuItems.home;
   @override
   Widget build(BuildContext context) => ZoomDrawer(
     style: DrawerStyle.Style1,
     borderRadius: 27,
-    angle: -10,
+    angle: -3,
     slideWidth: MediaQuery.of(context).size.width * 0.6,
     backgroundColor: Colors.blueAccent,
     showShadow: true,
@@ -42,10 +40,10 @@ class _RealHomeState extends State<RealHome> {
 
   Widget getScreen() {
     switch(currentItem) {
-      case MenuItems.allPlace:
-        return HomePage();
-      case MenuItems.allPlace:
-        return AllPlace();
+      case MenuItems.home:
+        return AllPage();
+      case MenuItems.home:
+        return AddPlace();
       case MenuItems.nearby:
         return NearBy();
       case MenuItems.saved:

@@ -9,6 +9,7 @@ class PanelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView(
+    
     padding: EdgeInsets.zero,
     controller: controller,
     children: [
@@ -26,17 +27,22 @@ class PanelWidget extends StatelessWidget {
       children: [ 
         buildDragHandler(), 
         SizedBox(height: 12),
-        DefaultTabController(
-          length: 4,
-          child: TabBar(
-            tabs: [
-              Tab(text: "Category"),
-              Tab(text: "Explore"),
-              Tab(text: "Contribution"),
-              Tab(text: "Plus")
-          ]),
-           
-        ),  
+        Container(
+          padding: EdgeInsets.only(left: 21),
+          child: Text("Explore",style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),),
+        ),
+        SizedBox(height: 16),
+        Container(
+          child:Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 children: [ 
+                   buildActivityButton(Icons.place, "Places",Colors.blue.withOpacity(0.2), Color(0XFF01579B)),
+                   buildActivityButton( Icons.near_me, "Nearby",Colors.cyanAccent.withOpacity(0.2),Color(0XFF0097A7)),
+                   buildActivityButton(Icons.add, "Category",Color(0XFFD7CCC8).withOpacity(0.4), Color(0XFF9499B7)),
+                   buildActivityButton(Icons.add, "Add",Color.fromARGB(255, 241, 113, 66).withOpacity(0.4), Color.fromARGB(169, 86, 107, 228)),
+                 ],
+               ),
+        ) ,
      ],
     ),
   );
@@ -62,4 +68,36 @@ class PanelWidget extends StatelessWidget {
   
    void togglePanel() => panelController.isPanelOpen
     ? panelController.close() : panelController.open();
+
+ 
+  GestureDetector buildActivityButton(
+      IconData icon, String title, Color backgroundColor, Color iconColor) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        margin: EdgeInsets.all(3),
+        height: 80,
+        width: 84,
+        decoration: BoxDecoration(
+            color: backgroundColor, borderRadius: BorderRadius.circular(10.0)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: iconColor,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              title,
+              style:
+                  TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    );
+}
 }
